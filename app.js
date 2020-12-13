@@ -48,7 +48,6 @@ app.post("/", function (req, res) {
       });
     } catch (err) {
       res.sendFile(__dirname +"/failure.html");
-       // TypeError: failed to fetch
     }
 
     res.sendFile(__dirname + "/succes.html");
@@ -57,6 +56,6 @@ app.post("/", function (req, res) {
   run();
 });
 
-app.listen(3000, function () {
-  console.log("Server run on port 3000");
+app.listen(process.env.PORT || 3000, function () {
+  console.log("Server run");
 });
