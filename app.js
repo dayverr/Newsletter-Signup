@@ -25,7 +25,7 @@ app.post("/", function (req, res) {
   const email = req.body.email;
 
   mailchimp.setConfig({
-    apiKey: "e847059ba34ae447e0e349c013a0519a-us7",
+    apiKey: "***********************",
     server: "us7",
   });
 
