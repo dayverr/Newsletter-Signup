@@ -25,7 +25,7 @@ app.post("/", function (req, res) {
   const email = req.body.email;
 
   mailchimp.setConfig({
-    apiKey: "**************************************",
+    apiKey: "e847059ba34ae447e0e349c013a0519a-us7",
     server: "us7",
   });
 
@@ -37,8 +37,7 @@ app.post("/", function (req, res) {
   };
 
   async function run() {
-    try {
-      const response = await mailchimp.lists.addListMember(listId, {
+    const response = await mailchimp.lists.addListMember(listId, {
         email_address: subscribingUser.email,
         status: "subscribed",
         merge_fields: {
@@ -46,16 +45,14 @@ app.post("/", function (req, res) {
           LNAME: subscribingUser.lastName,
         },
       });
-    } catch (err) {
-      res.sendFile(__dirname +"/failure.html");
-    }
-
     res.sendFile(__dirname + "/succes.html");
   }
 
-  run();
+  run().catch((err)=>{
+    res.sendFile(__dirname +"/failure.html");
+  });
 });
 
 app.listen(process.env.PORT || 3000, function () {
-  console.log("Server run");
+  console.log("Server run on port 3000");
 });
